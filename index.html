@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CTU Navigator</title>
+  <meta name="description" content="Modern CTU bus route finder (direct + 1 transfer) with all stops. Static GitHub Pages app." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="bg">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="gridOverlay"></div>
+  </div>
+
+  <header class="header">
+    <div class="brand">
+      <div class="logo">
+        <span class="logoDot"></span>
+        <span class="logoText">CTU</span>
+      </div>
+      <div class="brandText">
+        <div class="brandTitle">CTU Navigator</div>
+        <div class="brandSub">Pick stops. Get routes. See every stop.</div>
+      </div>
+    </div>
+
+    <div class="headerRight">
+      <button id="btnShare" class="btn btnGhost">Share link</button>
+      <button id="btnCopyTrip" class="btn btnGhost" disabled>Copy trip</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <!-- Planner -->
+    <section class="planner card">
+      <div class="cardTop">
+        <div>
+          <h1>Plan a trip</h1>
+          <p class="muted">Direct buses first, then best 1-transfer options.</p>
+        </div>
+
+        <div class="pill" id="dataStatus">
+          <span class="dot"></span>
+          <span>Data loaded</span>
+        </div>
+      </div>
+
+      <div class="inputs">
+        <div class="field">
+          <label for="fromStop">From</label>
+          <input id="fromStop" list="stopsList" placeholder="Type stop name…" autocomplete="off" />
+        </div>
+
+        <button id="btnSwap" class="swapBtn" title="Swap">
+          <span>⇄</span>
+        </button>
+
+        <div class="field">
+          <label for="toStop">To</label>
+          <input id="toStop" list="stopsList" placeholder="Type stop name…" autocomplete="off" />
+        </div>
+
+        <button id="btnFind" class="btn btnPrimary">Find routes</button>
+      </div>
+
+      <datalist id="stopsList"></datalist>
+
+      <div class="quick">
+        <div class="quickTitle">Quick picks</div>
+        <div class="chips" id="quickChips"></div>
+      </div>
+
+      <div id="alertBox" class="alert" hidden></div>
+    </section>
+
+    <!-- Results -->
+    <section class="results card">
+      <div class="resultsTop">
+        <div>
+          <h2>Routes</h2>
+          <p class="muted" id="resultsMeta">Enter From & To to see routes.</p>
+        </div>
+
+        <div class="searchBox">
+          <input id="stopSearch" placeholder="Highlight stop in results (e.g., 'Tribune')" />
+          <span class="kbd">/</span>
+        </div>
+      </div>
+
+      <div id="routesContainer" class="routes"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Static app for GitHub Pages • Edit routes in <code>routes.js</code></span>
+  </footer>
+
+  <script src="routes.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
